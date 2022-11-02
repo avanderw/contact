@@ -19,16 +19,18 @@
     <div class="container text-center">
         <div class="row justify-content-center">
             <p id="requireHTTPS" class="alert alert-danger d-none" role="alert">
-              <b>STOP!</b> This page <b>must</b> be served over HTTPS.
-              Please <a>reload this page via HTTPS</a>.
+                <b>STOP!</b> This page <b>must</b> be served over HTTPS.
+                Please <a>reload this page via HTTPS</a>.
             </p>
-          </div>
+        </div>
         <div class="row d-none" id="supportWarning">
             <div class="col">
                 <div class="alert alert-warning" role="alert">
-                The browser contact picker API is not supported! 
-                Visit the support page for the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Contact_Picker_API#browser_compatibility">contact picker API</a> for browser compatability.
-                Consider viewing this page from an android device using chrome.
+                    The browser contact picker API is not supported!
+                    Visit the support page for the <a
+                        href="https://developer.mozilla.org/en-US/docs/Web/API/Contact_Picker_API#browser_compatibility">contact
+                        picker API</a> for browser compatability.
+                    Consider viewing this page from an android device using chrome.
                 </div>
             </div>
         </div>
@@ -70,7 +72,10 @@
         <div class="row mb-3 d-none" id="buttonPanel">
             <div class="col">
                 <button id="contactBtn" class="btn btn-primary mb-3">Pick Contacts</button>
-                <div id="contactsDiv"></div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col" id="contactsDiv">
             </div>
         </div>
         <div class="row mb-3">

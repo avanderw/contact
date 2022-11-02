@@ -81,6 +81,7 @@ async function getContacts() {
                 const emailUl = document.createElement('ul');
                 emailUl.classList.add("list-group");
                 emailUl.classList.add("list-group-flush");
+                emailUl.classList.add("mb-3");
                 for (const email of contact.email) {
                     const a = document.createElement('a');
                     a.href = "mailto:" + email;
@@ -99,6 +100,7 @@ async function getContacts() {
                 const telUl = document.createElement('ul');
                 telUl.classList.add("list-group");
                 telUl.classList.add("list-group-flush");
+                telUl.classList.add("mb-3");
                 for (const tel of contact.tel) {
                     const a = document.createElement('a');
                     a.href = "tel:" + tel;
