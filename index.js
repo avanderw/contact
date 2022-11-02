@@ -46,9 +46,35 @@ const opts = { multiple: true };
 async function getContacts() {
     try {
         const contacts = await navigator.contacts.select(props, opts);
-        let text = "";
+        const contactsDiv = document.getElementById("contactsDiv");
         for (const contact of contacts) {
-            text += "Name: " + contact.name + " Email: " + contact.email + " Telephone: " + contact.tel + " Address: " + contact.address + " Avatar: " + contact.icon + " ";
+            if (contact.name) {
+                const name = document.createElement("h2");
+                name.innerText = contact.name;
+                contactsDiv.appendChild(name);
+            }
+            if (contact.email) {
+                const email = document.createElement("a");
+                email.href = "mailto:" + contact.email;
+                email.innerText = contact.email;
+                contactsDiv.appendChild(email);
+            }
+            if (contact.tel) {
+                const tel = document.createElement("a");
+                tel.href = "tel:" + contact.tel;
+                tel.innerText = contact.tel;
+                contactsDiv.appendChild(tel);
+            }
+            if (contact.address) {
+                const address = document.createElement("p");
+                address.innerText = contact.address;
+                contactsDiv.appendChild(address);
+            }
+            if (contact.icon) {
+                const icon = document.createElement("img");
+                icon.src = contact.icon;
+                contactsDiv.appendChild(icon);
+            }
         }
         document.getElementById("contactsDiv").innerHTML = text;
     } catch (ex) {
