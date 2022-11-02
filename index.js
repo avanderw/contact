@@ -49,35 +49,44 @@ async function getContacts() {
         const contactsDiv = document.getElementById("contactsDiv");
         for (const contact of contacts) {
             if (contact.icon) {
-                const icon = document.createElement("img");
                 const urlCreator = window.URL || window.webkitURL;
-                icon.src = urlCreator.createObjectURL(contact.icon);
-                contactsDiv.appendChild(icon);
+                for (const icon of contact.icon) {
+                    const img = document.createElement('img');
+                    img.src = urlCreator.createObjectURL(icon);
+                    contactsDiv.appendChild(img);
+                }
             }
             if (contact.name) {
-                const name = document.createElement("h2");
-                name.innerText = contact.name;
-                contactsDiv.appendChild(name);
+                for (const name of contact.name) {
+                    const h2 = document.createElement('h2');
+                    h2.innerText = name;
+                    contactsDiv.appendChild(h2);
+                }
             }
             if (contact.email) {
-                const email = document.createElement("a");
-                email.href = "mailto:" + contact.email;
-                email.innerText = contact.email;
-                contactsDiv.appendChild(email);
+                for (const email of contact.email) {
+                    const a = document.createElement('a');
+                    a.href = "mailto:" + email;
+                    a.innerText = email;
+                    contactsDiv.appendChild(a);
+                }
             }
             if (contact.tel) {
-                const tel = document.createElement("a");
-                tel.href = "tel:" + contact.tel;
-                tel.innerText = contact.tel;
-                contactsDiv.appendChild(tel);
+                for (const tel of contact.tel) {
+                    const a = document.createElement('a');
+                    a.href = "tel:" + tel;
+                    a.innerText = tel;
+                    contactsDiv.appendChild(a);
+                }
             }
             if (contact.address) {
-                const address = document.createElement("p");
-                address.innerText = contact.address;
-                contactsDiv.appendChild(address);
+                for (const address of contact.address) {
+                    const p = document.createElement('p');
+                    p.innerText = address;
+                    contactsDiv.appendChild(p);
+                }
             }
         }
-        document.getElementById("contactsDiv").innerHTML = text;
     } catch (ex) {
         console.log(ex);
     }
