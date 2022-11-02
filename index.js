@@ -35,13 +35,22 @@ async function checkProperties() {
     }
 }
 
+async function enableContacts() {
+    document.getElementById("buttonPanel").classList.remove("d-none");
+    document.getElementById("contactBtn").addEventListener("click", getContacts);
+}
+
 const props = ['name', 'email', 'tel', 'address', 'icon'];
 const opts = { multiple: true };
 
 async function getContacts() {
     try {
         const contacts = await navigator.contacts.select(props, opts);
-        handleResults(contacts);
+        let text = "";
+        for (const contact of contacts) {
+            text += "Name: " + contact.name + " Email: " + contact.email + " Telephone: " + contact.tel + " Address: " + contact.address + " Avatar: " + contact.icon + " ";
+        }
+        document.getElementById("contactsDiv").innerHTML = text;
     } catch (ex) {
         console.log(ex);
     }
@@ -61,6 +70,7 @@ if (window.location.protocol === 'http:') {
 } else {
     if (supported) {
         checkProperties();
+        enableContacts();
     } else {
         document.getElementById("supportWarning").classList.remove("d-none");
     }
