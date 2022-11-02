@@ -46,49 +46,74 @@ const opts = { multiple: true };
 async function getContacts() {
     try {
         const contacts = await navigator.contacts.select(props, opts);
-        const contactsDiv = document.getElementById("contactsDiv");
         for (const contact of contacts) {
+            const contactDiv = document.createElement("div");
+            contactDiv.classList.add("card");
+            contactDiv.classList.add("mb-3");
             if (contact.icon) {
                 const urlCreator = window.URL || window.webkitURL;
                 for (const icon of contact.icon) {
                     const img = document.createElement('img');
                     img.src = urlCreator.createObjectURL(icon);
-                    contactsDiv.appendChild(img);
-                    contactsDiv.appendChild(document.createElement('br'));
+                    img.classList.add("card-img-top");
+                    contactDiv.appendChild(img);
                 }
             }
+            const cardBody = document.createElement("div");
+            cardBody.classList.add("card-body");
+            contactDiv.appendChild(cardBody);
             if (contact.name) {
                 for (const name of contact.name) {
-                    const h2 = document.createElement('h2');
-                    h2.innerText = name;
-                    contactsDiv.appendChild(h2);
-                }
-            }
-            if (contact.email) {
-                for (const email of contact.email) {
-                    const a = document.createElement('a');
-                    a.href = "mailto:" + email;
-                    a.innerText = email;
-                    contactsDiv.appendChild(a);
-                    contactsDiv.appendChild(document.createElement('br'));
-                }
-            }
-            if (contact.tel) {
-                for (const tel of contact.tel) {
-                    const a = document.createElement('a');
-                    a.href = "tel:" + tel;
-                    a.innerText = tel;
-                    contactsDiv.appendChild(a);
-                    contactsDiv.appendChild(document.createElement('br'));
+                    const title = document.createElement('h5');
+                    title.innerText = name;
+                    title.classList.add("card-title");
+                    cardBody.appendChild(title);
                 }
             }
             if (contact.address) {
                 for (const address of contact.address) {
                     const p = document.createElement('p');
                     p.innerText = address;
-                    contactsDiv.appendChild(p);
+                    cardBody.appendChild(p);
                 }
             }
+            if (contact.email) {
+                const emailUl = document.createElement('ul');
+                emailUl.classList.add("list-group");
+                emailUl.classList.add("list-group-flush");
+                for (const email of contact.email) {
+                    const a = document.createElement('a');
+                    a.href = "mailto:" + email;
+                    a.innerText = email;
+                    const li = document.createElement('li');
+                    li.classList.add("list-group-item");
+                    li.appendChild(a);
+                    emailUl.appendChild(li);
+                }
+                const emailHeader = document.createElement('h6');
+                emailHeader.innerText = "Email";
+                contactDiv.appendChild(emailHeader);
+                contactDiv.appendChild(emailUl);
+            }
+            if (contact.tel) {
+                const telUl = document.createElement('ul');
+                telUl.classList.add("list-group");
+                telUl.classList.add("list-group-flush");
+                for (const tel of contact.tel) {
+                    const a = document.createElement('a');
+                    a.href = "tel:" + tel;
+                    a.innerText = tel;
+                    const li = document.createElement('li');
+                    li.classList.add("list-group-item");
+                    li.appendChild(a);
+                    telUl.appendChild(li);
+                }
+                const telHeader = document.createElement('h6');
+                telHeader.innerText = "Telephone";
+                contactDiv.appendChild(telHeader);
+                contactDiv.appendChild(telUl);
+            }
+            document.getElementById("contactsDiv").appendChild(contactDiv);
         }
     } catch (ex) {
         console.log(ex);
