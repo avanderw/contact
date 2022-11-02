@@ -6,22 +6,32 @@ async function checkProperties() {
     if (supportedProperties.includes('name')) {
         console.log("name supported");
         document.getElementById("nameSupported").innerText = "Supported";
+        document.getElementById("nameSupported").classList.add("success");
+        document.getElementById("nameSupported").classList.remove("warning");
     }
     if (supportedProperties.includes('email')) {
         console.log("email supported");
         document.getElementById("emailSupported").innerText = "Supported";
+        document.getElementById("emailSupported").classList.add("success");
+        document.getElementById("emailSupported").classList.remove("warning");
     }
     if (supportedProperties.includes('tel')) {
         console.log("telephone number supported");
         document.getElementById("telSupported").innerText = "Supported";
+        document.getElementById("telSupported").classList.add("success");
+        document.getElementById("telSupported").classList.remove("warning");
     }
     if (supportedProperties.includes('address')) {
         console.log("address supported");
         document.getElementById("addressSupported").innerText = "Supported";
+        document.getElementById("addressSupported").classList.add("success");
+        document.getElementById("addressSupported").classList.remove("warning");
     }
     if (supportedProperties.includes('icon')) {
         console.log("avatar supported");
         document.getElementById("iconSupported").innerText = "Supported";
+        document.getElementById("iconSupported").classList.add("success");
+        document.getElementById("iconSupported").classList.remove("warning");
     }
 }
 
