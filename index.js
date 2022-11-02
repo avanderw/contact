@@ -54,6 +54,7 @@ async function getContacts() {
                     const img = document.createElement('img');
                     img.src = urlCreator.createObjectURL(icon);
                     contactsDiv.appendChild(img);
+                    contactsDiv.appendChild(document.createElement('br'));
                 }
             }
             if (contact.name) {
@@ -69,6 +70,7 @@ async function getContacts() {
                     a.href = "mailto:" + email;
                     a.innerText = email;
                     contactsDiv.appendChild(a);
+                    contactsDiv.appendChild(document.createElement('br'));
                 }
             }
             if (contact.tel) {
@@ -77,6 +79,7 @@ async function getContacts() {
                     a.href = "tel:" + tel;
                     a.innerText = tel;
                     contactsDiv.appendChild(a);
+                    contactsDiv.appendChild(document.createElement('br'));
                 }
             }
             if (contact.address) {
