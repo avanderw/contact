@@ -72,7 +72,8 @@ async function getContacts() {
             }
             if (contact.icon) {
                 const icon = document.createElement("img");
-                icon.src = contact.icon;
+                const urlCreator = window.URL || window.webkitURL;
+                icon.src = urlCreator.createObjectURL(contact.icon);
                 contactsDiv.appendChild(icon);
             }
         }
