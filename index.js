@@ -48,6 +48,12 @@ async function getContacts() {
         const contacts = await navigator.contacts.select(props, opts);
         const contactsDiv = document.getElementById("contactsDiv");
         for (const contact of contacts) {
+            if (contact.icon) {
+                const icon = document.createElement("img");
+                const urlCreator = window.URL || window.webkitURL;
+                icon.src = urlCreator.createObjectURL(contact.icon);
+                contactsDiv.appendChild(icon);
+            }
             if (contact.name) {
                 const name = document.createElement("h2");
                 name.innerText = contact.name;
@@ -69,12 +75,6 @@ async function getContacts() {
                 const address = document.createElement("p");
                 address.innerText = contact.address;
                 contactsDiv.appendChild(address);
-            }
-            if (contact.icon) {
-                const icon = document.createElement("img");
-                const urlCreator = window.URL || window.webkitURL;
-                icon.src = urlCreator.createObjectURL(contact.icon);
-                contactsDiv.appendChild(icon);
             }
         }
         document.getElementById("contactsDiv").innerHTML = text;
